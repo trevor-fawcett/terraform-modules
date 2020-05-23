@@ -15,8 +15,8 @@ resource "aws_iam_role" "codepipeline_role" {
 data "template_file" "codepipeline_policy_template" {
   template = file("${path.module}/policies/codepipeline.tpl")
   vars = {
-    aws_kms_key     = var.artifact_encryption_key.arn
-    artifact_bucket = var.build_artifact_bucket.arn
+    aws_kms_key     = var.artifact_encryption_key_arn
+    artifact_bucket = var.build_artifact_bucket_arn
   }
 }
 
@@ -32,11 +32,11 @@ resource "aws_codepipeline" "codepipeline" {
   role_arn = aws_iam_role.codepipeline_role.arn
 
   artifact_store {
-    location = var.build_artifact_bucket.bucket
+    location = var.build_artifact_bucket_name
     type     = "S3"
 
     encryption_key {
-      id   = var.artifact_encryption_key.arn
+      id   = var.artifact_encryption_key_arn
       type = "KMS"
     }
   }
@@ -72,7 +72,7 @@ resource "aws_codepipeline" "codepipeline" {
       version          = "1"
 
       configuration = {
-        ProjectName = var.codebuild_test_project.name
+        ProjectName = var.codebuild_test_project_name
       }
     }
   }
@@ -90,7 +90,7 @@ resource "aws_codepipeline" "codepipeline" {
       version          = "1"
 
       configuration = {
-        ProjectName = var.codebuild_package_project.name
+        ProjectName = var.codebuild_package_project_name
       }
     }
   }

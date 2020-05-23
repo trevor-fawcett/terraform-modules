@@ -18,22 +18,27 @@ variable "repo_branch" {
   default = "master"
 }
 
-variable "artifact_encryption_key" {
-  description = "The KMS key used to encrypt the artifact"
+variable "artifact_encryption_key_arn" {
+  description = "The ARN of the KMS key used to encrypt the artifact"
   default = ""
 }
 
-variable "build_artifact_bucket" {
-  description = "The S3 Bucket that will receive build artifacts"
+variable "build_artifact_bucket_name" {
+  description = "The name of the S3 Bucket that will receive build artifacts"
   default = ""
 }
 
-variable "codebuild_test_project" {
-  description = "The CodeBuild project to be used during the test stage of the pipeline"
+variable "build_artifact_bucket_arn" {
+  description = "The ARN of the S3 Bucket that will receive build artifacts"
   default = ""
 }
 
-variable "codebuild_package_project" {
-  description = "The CodeBuild project to be used during the package stage of the pipeline"
+variable "codebuild_test_project_name" {
+  description = "The name of the CodeBuild project to be used during the test stage of the pipeline"
+  default = ""
+}
+
+variable "codebuild_package_project_name" {
+  description = "The name of the CodeBuild project to be used during the package stage of the pipeline"
   default = ""
 }
