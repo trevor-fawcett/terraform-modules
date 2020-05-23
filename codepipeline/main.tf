@@ -8,7 +8,7 @@ data "template_file" "codepipeline_assume_role_policy_template" {
 }
 
 resource "aws_iam_role" "codepipeline_role" {
-  name               = "${local.repo_name}-codepipeline-role"
+  name               = "${var.repo_name}-codepipeline-role"
   assume_role_policy = data.template_file.codepipeline_assume_role_policy_template.rendered
 }
 
