@@ -1,3 +1,3 @@
-# CodeBuild Module
+# CodeDeploy Module for Lambda
 
-Provides a CodeBuild project for a specified purpose (test, package, etc) along with associated roles/policies.
+Provides a CodeDeploy Application and Deployment Group for a Lambda package, along with associated roles/policies.
