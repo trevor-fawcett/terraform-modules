@@ -12,3 +12,8 @@ variable "repo_default_branch" {
   description = "The name of the default repository branch (default: master)"
   default     = "master"
 }
+
+variable "prevent_destroy" {
+  description = "Prevents the repository being destroyed along with other infrastructure (default: true)"
+  default     = "true"
+}
