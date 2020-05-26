@@ -23,18 +23,9 @@ resource "aws_codedeploy_app" "codedeploy_application" {
   compute_platform = "Lambda"
 }
 
-resource "aws_codedeploy_deployment_config" "codedeploy_deployment_config" {
-  deployment_config_name = "${var.repo_name}-deployment-config"
-  compute_platform       = "Lambda"
-
-  traffic_routing_config {
-    type = "AllAtOnce"
-  }
-}
-
 resource "aws_codedeploy_deployment_group" "codedeploy_deployment_group" {
   app_name               = aws_codedeploy_app.codedeploy_application.name
-  deployment_config_name = aws_codedeploy_deployment_config.codedeploy_deployment_config.id
+  deployment_config_name = "CodeDeployDefault.LambdaAllAtOnce"
   deployment_group_name  = "${var.repo_name}-deployment-group"
   service_role_arn       = aws_iam_role.codedeploy_assume_role.arn
 }
